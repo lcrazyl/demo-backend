@@ -21,10 +21,10 @@ jobs:
     - name: deploy
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secret.HOST }}
-        username: ${{ secret.USERNAME }}
-        password: ${{ secret.PASSWORD }}
-        port: ${{ secret.PORT }}
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
         script:  |
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/bash_completion"
