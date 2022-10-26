@@ -23,24 +23,22 @@ jobs:
       fail-fast: false
       matrix:
         node-version: [16, 18]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
 
     steps:
-    - name: Checkout Git Source
-      uses: actions/checkout@v2
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - name: deploy
+      uses: appleboy/ssh-action@main
       with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install Dependencies
-      run: npm i
-
-    - name: Continuous Integration
-      run: npm run ci
-
-    - name: Code Coverage
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+        host:${{secrets.HOST}}
+        username:${{secrets.USERNAME}}
+        # key :${{secrets.KEY}}
+        password:${{secrets.PASSWORD}}
+        port:${{secrets.PORT}}
+        scripts:
+         export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          cd /root/demo-backend
+          git pull origin main
+          npm install --production
+          npm run stop
+          npm run start

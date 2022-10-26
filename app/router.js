@@ -2,7 +2,7 @@
  * @Author: 李佳奇
  * @Date: 2022-10-20 21:29:51
  * @LastEditors: 李佳奇
- * @LastEditTime: 2022-10-21 18:44:07
+ * @LastEditTime: 2022-10-26 10:50:52
  * @Description: 请填写简介
  */
 "use strict";
@@ -25,7 +25,7 @@ module.exports = (app) => {
 
   router.post("/goods", controller.goods.add); //创建商品
   router.get("/goods", controller.goods.getAllGoods); //查找所有
-  router.post("/goods/edit", controller.goods.adit); //创建商品
-  router.delete("/goods/del/:name", controller.goods.delGood); //创建商品
+  router.post("/goods/edit", controller.goods.adit); //修改商品
+  router.delete("/goods/del/:name", controller.goods.delGood); //删除商品
 
 };
