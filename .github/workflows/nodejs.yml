@@ -29,12 +29,11 @@ jobs:
     - name: deploy
       uses: appleboy/ssh-action@main
       with:
-        host:${{secrets.HOST}}
-        username:${{secrets.USERNAME}}
-        # key :${{secrets.KEY}}
-        password:${{secrets.PASSWORD}}
-        port:${{secrets.PORT}}
-        run:
+        host: ${{secrets.HOST}}
+        username: ${{secrets.USERNAME}}
+        password: ${{secrets.PASSWORD}}
+        port: ${{secrets.PORT}}
+        script:
           export NVM_DIR="$HOME/ .nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
